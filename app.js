@@ -5,6 +5,10 @@ const sliders = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll(".color h2");
 let initialColors;
 
+sliders.forEach((slider) => {
+  slider.addEventListener("input", hslControls);
+});
+
 function generateHex() {
   const hexColor = chroma.random();
   return hexColor;
@@ -55,5 +59,7 @@ function colorizeSliders(color, hue, brightness, saturation) {
     ,${scaleBright(0.5)} ,${scaleBright(1)})`;
   hue.style.backgroundImage = `linear-gradient(to right, rgb(204,75,75),rgb(204,204,75),rgb(75,204,75),rgb(75,204,204),rgb(75,75,204),rgb(204,75,204),rgb(204,75,75))`;
 }
+
+
 
 randomColors();
