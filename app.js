@@ -15,6 +15,18 @@ colorDivs.forEach((div, index) => {
   });
 });
 
+currentHexes.forEach((hex) => {
+  hex.addEventListener("click", () => {
+    copyToClipboard(hex);
+  });
+});
+
+popup.addEventListener("transitionend", () => {
+  const popupBox = popup.children[0];
+  popup.classList.remove("active");
+  popupBox.classList.remove("active");
+});
+
 function generateHex() {
   const hexColor = chroma.random();
   return hexColor;
@@ -26,7 +38,7 @@ function randomColors() {
     const hexText = div.children[0];
     const randomColor = generateHex();
 
-    initialColors.push(hexText.innerText)
+    initialColors.push(hexText.innerText);
 
     div.style.backgroundColor = randomColor;
     hexText.innerText = randomColor;
@@ -108,24 +120,39 @@ function updateTextUI(index) {
 }
 
 function resetInputs() {
-    const sliders = document.querySelectorAll(".sliders input");
-    sliders.forEach(slider => {
-      if (slider.name === "hue") {
-        const hueColor = initialColors[slider.getAttribute("data-hue")];
-        const hueValue = chroma(hueColor).hsl()[0];
-        slider.value = Math.floor(hueValue);
-      }
-      if (slider.name === "brightness") {
-        const brightColor = initialColors[slider.getAttribute("data-bright")];
-        const brightValue = chroma(brightColor).hsl()[2];
-        slider.value = Math.floor(brightValue * 100) / 100;
-      }
-      if (slider.name === "saturation") {
-        const satColor = initialColors[slider.getAttribute("data-sat")];
-        const satValue = chroma(satColor).hsl()[1];
-        slider.value = Math.floor(satValue * 100) / 100;
-      }
-    });
-  }
+  const sliders = document.querySelectorAll(".sliders input");
+  sliders.forEach((slider) => {
+    if (slider.name === "hue") {
+      const hueColor = initialColors[slider.getAttribute("data-hue")];
+      const hueValue = chroma(hueColor).hsl()[0];
+      slider.value = Math.floor(hueValue);
+    }
+    if (slider.name === "brightness") {
+      const brightColor = initialColors[slider.getAttribute("data-bright")];
+      const brightValue = chroma(brightColor).hsl()[2];
+      slider.value = Math.floor(brightValue * 100) / 100;
+    }
+    if (slider.name === "saturation") {
+      const satColor = initialColors[slider.getAttribute("data-sat")];
+      const satValue = chroma(satColor).hsl()[1];
+      slider.value = Math.floor(satValue * 100) / 100;
+    }
+  });
+}
+
+function copyToClipboard(hex) {
+  const el = document.createElement("textarea");
+  el.value = hex.innerText;
+  document.body.appendChild(el);
+
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
+
+  //Pop up animation
+  const popupBox = popup.children[0];
+  popup.classList.add("active");
+  popupBox.classList.add("active");
+}
 
 randomColors();
