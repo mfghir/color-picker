@@ -8,6 +8,7 @@ const adjustButton = document.querySelectorAll(".adjust");
 
 const closeAdjustments = document.querySelectorAll(".close-adjustment");
 const sliderContainers = document.querySelectorAll(".sliders");
+const lockButton = document.querySelectorAll(".lock");
 
 let initialColors;
 
@@ -45,6 +46,8 @@ closeAdjustments.forEach((button, index) => {
   });
 });
 
+generateBtn.addEventListener("click", randomColors);
+
 function generateHex() {
   const hexColor = chroma.random();
   return hexColor;
@@ -71,6 +74,12 @@ function randomColors() {
     colorizeSliders(color, hue, brightness, saturation);
   });
   resetInputs();
+
+  //Check For Button Contrast
+  adjustButton.forEach((button, index) => {
+    checkTextContrast(initialColors[index], button);
+    checkTextContrast(initialColors[index], lockButton[index]);
+  })
 }
 
 function checkTextContrast(color, text) {
