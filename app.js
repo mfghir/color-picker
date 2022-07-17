@@ -59,7 +59,12 @@ function randomColors() {
     const hexText = div.children[0];
     const randomColor = generateHex();
 
-    initialColors.push(hexText.innerText);
+    if (div.classList.contains("locked")) {
+      initialColors.push(hexText.innerText);
+      return;
+    } else {
+      initialColors.push(chroma(randomColor).hex());
+    }
 
     div.style.backgroundColor = randomColor;
     hexText.innerText = randomColor;
