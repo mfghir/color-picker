@@ -85,7 +85,7 @@ function randomColors() {
   adjustButton.forEach((button, index) => {
     checkTextContrast(initialColors[index], button);
     checkTextContrast(initialColors[index], lockButton[index]);
-  })
+  });
 }
 
 function checkTextContrast(color, text) {
@@ -204,14 +204,19 @@ const closeSave = document.querySelector(".close-save");
 const saveContainer = document.querySelector(".save-container");
 const saveInput = document.querySelector(".save-container input");
 
-
 saveBtn.addEventListener("click", openPalette);
+closeSave.addEventListener("click", closePalette);
 
-
-function openPalette(e) {
+function openPalette() {
   const popup = saveContainer.children[0];
   saveContainer.classList.add("active");
   popup.classList.add("active");
+}
+
+function closePalette() {
+  const popup = saveContainer.children[0];
+  saveContainer.classList.remove("active");
+  popup.classList.add("remove");
 }
 
 randomColors();
