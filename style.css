@@ -185,6 +185,11 @@ input[type="range"] {
 
     min-height: 30vh;
 }
+.library-popup{
+    border-radius: 0;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+}
 
 .copy-popup h4,
 .save-popup h4,
@@ -208,7 +213,8 @@ input[type="range"] {
 
 
 
-.close-save {
+.close-save,
+.close-library {
     background: none;
     color: red;
     margin: 10px;
