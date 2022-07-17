@@ -87,6 +87,8 @@ svg {
     font-weight: bold;
 }
 
+
+
 .controls {
     display: flex;
     flex-direction: column;
@@ -202,4 +204,38 @@ input[type="range"] {
 .save-popup.active,
 .library-popup.active {
     transform: translateY(0rem);
+}
+
+
+
+.close-save {
+    background: none;
+    color: red;
+    margin: 10px;
+    font-size: 20px;
+}
+
+.save-name {
+    font-size: 1.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    outline: none;
+    border: 2px solid rgb(60, 60, 92);
+}
+
+.close-save,
+.close-library {
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.submit-save {
+    margin: 2rem;
+    padding: 1rem 2rem;
+    background: rgb(60, 60, 92);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
 }
